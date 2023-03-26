@@ -12,7 +12,7 @@
 	<artifactId>ai-crawler</artifactId>
 	<version>1.0.0</version>
 	<name>ai-crawler</name>
-	<description>由Chatgpt4辅助编写的爬虫程序，能够抓取技术类站点的博客链接。根据博客更新的情况，判断当前的技术流行趋势。</description>
+	<description>由ChatGPT4辅助编写的爬虫程序，能够抓取技术类站点的博客链接。根据博客更新的情况，判断当前的技术流行趋势。</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
