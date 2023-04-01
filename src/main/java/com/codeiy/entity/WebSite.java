@@ -37,4 +37,5 @@ public class WebSite {
      * 上次爬取时间
      */
     private Date lastCrawledTime;
+    private String category;
 }

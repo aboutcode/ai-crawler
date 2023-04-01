@@ -1,17 +1,15 @@
-package com.codeiy.util.http;
+package com.codeiy.monitor;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.concurrent.TimeUnit;
 
+import com.codeiy.dto.HttpLog;
 import okhttp3.Interceptor;
-import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
 import okio.Buffer;
-import okio.BufferedSource;
+
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.Map;
@@ -29,6 +27,7 @@ public class LoggingInterceptor implements Interceptor {
         Request request = chain.request();
 
         HttpLog httpLog = new HttpLog();
+        httpLog.setUrl(request.url().toString());
         httpLog.setStartTime(System.nanoTime());
         httpLog.setHeaders(request.headers().toMultimap().entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().get(0))));
         httpLog.setQueryParams(request.url().queryParameterNames().stream().collect(Collectors.toMap(Function.identity(), key -> request.url().queryParameterValues(key).get(0))));
@@ -51,8 +50,8 @@ public class LoggingInterceptor implements Interceptor {
         Response response = chain.proceed(request);
 
         httpLog.setEndTime(System.nanoTime());
-        httpLog.setResponseBody(response.body().string());
-        System.out.println(httpLog.toString());
+//        httpLog.setResponseBody(response.body().string());
+        System.out.println(httpLog);
 
         return response;
     }
